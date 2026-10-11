@@ -1,0 +1,24 @@
+
+10. Printing statistics.
+
+=== ecc_top ===
+
+   Number of wires:               1033
+   Number of wire bits:           1693
+   Number of public wires:          35
+   Number of public wire bits:     695
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1352
+     $_ANDNOT_                     122
+     $_DFFE_PP_                    312
+     $_MUX_                        407
+     $_NAND_                         5
+     $_NOR_                          1
+     $_NOT_                         29
+     $_ORNOT_                        4
+     $_OR_                         226
+     $_XNOR_                        32
+     $_XOR_                        214
+

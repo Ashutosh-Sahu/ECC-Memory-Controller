@@ -1,0 +1,1130 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Running command `
+    read_verilog -sv rtl/ecc_encoder.sv rtl/ecc_decoder.sv
+    hierarchy -check -top ecc_decoder
+    synth -top ecc_decoder -flatten
+    opt_clean
+    check -assert
+    tee -o synth/reports/ecc_decoder_stat.txt stat
+    tee -o synth/reports/ecc_decoder_ltp.txt ltp -noff
+    write_verilog -noattr synth/ecc_decoder_netlist.v
+  ' --
+
+1. Executing Verilog-2005 frontend: rtl/ecc_encoder.sv
+Parsing SystemVerilog input from `rtl/ecc_encoder.sv' to AST representation.
+Generating RTLIL representation for module `\ecc_encoder'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/ecc_decoder.sv
+Parsing SystemVerilog input from `rtl/ecc_decoder.sv' to AST representation.
+Generating RTLIL representation for module `\ecc_decoder'.
+Successfully finished Verilog frontend.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \ecc_decoder
+
+3.2. Analyzing design hierarchy..
+Top module:  \ecc_decoder
+Removing unused module `\ecc_encoder'.
+Removed 1 unused modules.
+
+4. Executing SYNTH pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \ecc_decoder
+
+4.1.2. Analyzing design hierarchy..
+Top module:  \ecc_decoder
+Removed 0 unused modules.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 234 empty switches in `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+Cleaned up 234 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 36 switch rules as full_case in process $proc$rtl/ecc_decoder.sv:0$435 in module ecc_decoder.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 216 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~36 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+     1/180: $32$unnamed_block$335.k[31:0]$1233
+     2/180: $32\corrected_data[31:0]
+     3/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$433[31:0]$1235
+     4/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$432[31:0]$1234
+     5/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$434[31:0]$1236
+     6/180: $31$unnamed_block$335.k[31:0]$1218
+     7/180: $31\corrected_data[31:0]
+     8/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$430[31:0]$1220
+     9/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$429[31:0]$1219
+    10/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$431[31:0]$1221
+    11/180: $30$unnamed_block$335.k[31:0]$1203
+    12/180: $30\corrected_data[31:0]
+    13/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$427[31:0]$1205
+    14/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$426[31:0]$1204
+    15/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$428[31:0]$1206
+    16/180: $29$unnamed_block$335.k[31:0]$1188
+    17/180: $29\corrected_data[31:0]
+    18/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$424[31:0]$1190
+    19/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$423[31:0]$1189
+    20/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$425[31:0]$1191
+    21/180: $28$unnamed_block$335.k[31:0]$1173
+    22/180: $28\corrected_data[31:0]
+    23/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$421[31:0]$1175
+    24/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$420[31:0]$1174
+    25/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$422[31:0]$1176
+    26/180: $27$unnamed_block$335.k[31:0]$1158
+    27/180: $27\corrected_data[31:0]
+    28/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$418[31:0]$1160
+    29/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$417[31:0]$1159
+    30/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$419[31:0]$1161
+    31/180: $26$unnamed_block$335.k[31:0]$1143
+    32/180: $26\corrected_data[31:0]
+    33/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$415[31:0]$1145
+    34/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$414[31:0]$1144
+    35/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$416[31:0]$1146
+    36/180: $25$unnamed_block$335.k[31:0]$1128
+    37/180: $25\corrected_data[31:0]
+    38/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$412[31:0]$1130
+    39/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$411[31:0]$1129
+    40/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$413[31:0]$1131
+    41/180: $24$unnamed_block$335.k[31:0]$1113
+    42/180: $24\corrected_data[31:0]
+    43/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$409[31:0]$1115
+    44/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$408[31:0]$1114
+    45/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$410[31:0]$1116
+    46/180: $23$unnamed_block$335.k[31:0]$1098
+    47/180: $23\corrected_data[31:0]
+    48/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$406[31:0]$1100
+    49/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$405[31:0]$1099
+    50/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$407[31:0]$1101
+    51/180: $22$unnamed_block$335.k[31:0]$1083
+    52/180: $22\corrected_data[31:0]
+    53/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$403[31:0]$1085
+    54/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$402[31:0]$1084
+    55/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$404[31:0]$1086
+    56/180: $21$unnamed_block$335.k[31:0]$1068
+    57/180: $21\corrected_data[31:0]
+    58/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$400[31:0]$1070
+    59/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$399[31:0]$1069
+    60/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$401[31:0]$1071
+    61/180: $20$unnamed_block$335.k[31:0]$1053
+    62/180: $20\corrected_data[31:0]
+    63/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$397[31:0]$1055
+    64/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$396[31:0]$1054
+    65/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$398[31:0]$1056
+    66/180: $19$unnamed_block$335.k[31:0]$1038
+    67/180: $19\corrected_data[31:0]
+    68/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$394[31:0]$1040
+    69/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$393[31:0]$1039
+    70/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$395[31:0]$1041
+    71/180: $18$unnamed_block$335.k[31:0]$1023
+    72/180: $18\corrected_data[31:0]
+    73/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$391[31:0]$1025
+    74/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$390[31:0]$1024
+    75/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$392[31:0]$1026
+    76/180: $17$unnamed_block$335.k[31:0]$1008
+    77/180: $17\corrected_data[31:0]
+    78/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$388[31:0]$1010
+    79/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$387[31:0]$1009
+    80/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$389[31:0]$1011
+    81/180: $16$unnamed_block$335.k[31:0]$993
+    82/180: $16\corrected_data[31:0]
+    83/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$385[31:0]$995
+    84/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$384[31:0]$994
+    85/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$386[31:0]$996
+    86/180: $15$unnamed_block$335.k[31:0]$978
+    87/180: $15\corrected_data[31:0]
+    88/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$382[31:0]$980
+    89/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$381[31:0]$979
+    90/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$383[31:0]$981
+    91/180: $14$unnamed_block$335.k[31:0]$963
+    92/180: $14\corrected_data[31:0]
+    93/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$379[31:0]$965
+    94/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$378[31:0]$964
+    95/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$380[31:0]$966
+    96/180: $13$unnamed_block$335.k[31:0]$948
+    97/180: $13\corrected_data[31:0]
+    98/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$376[31:0]$950
+    99/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$375[31:0]$949
+   100/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$377[31:0]$951
+   101/180: $12$unnamed_block$335.k[31:0]$933
+   102/180: $12\corrected_data[31:0]
+   103/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$373[31:0]$935
+   104/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$372[31:0]$934
+   105/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$374[31:0]$936
+   106/180: $11$unnamed_block$335.k[31:0]$918
+   107/180: $11\corrected_data[31:0]
+   108/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$370[31:0]$920
+   109/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$369[31:0]$919
+   110/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$371[31:0]$921
+   111/180: $10$unnamed_block$335.k[31:0]$903
+   112/180: $10\corrected_data[31:0]
+   113/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$367[31:0]$905
+   114/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$366[31:0]$904
+   115/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$368[31:0]$906
+   116/180: $9$unnamed_block$335.k[31:0]$888
+   117/180: $9\corrected_data[31:0]
+   118/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$364[31:0]$890
+   119/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$363[31:0]$889
+   120/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$365[31:0]$891
+   121/180: $8$unnamed_block$335.k[31:0]$873
+   122/180: $8\corrected_data[31:0]
+   123/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$361[31:0]$875
+   124/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$360[31:0]$874
+   125/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$362[31:0]$876
+   126/180: $7$unnamed_block$335.k[31:0]$858
+   127/180: $7\corrected_data[31:0]
+   128/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$358[31:0]$860
+   129/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$357[31:0]$859
+   130/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$359[31:0]$861
+   131/180: $6$unnamed_block$335.k[31:0]$843
+   132/180: $6\corrected_data[31:0]
+   133/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$355[31:0]$845
+   134/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$354[31:0]$844
+   135/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$356[31:0]$846
+   136/180: $5$unnamed_block$335.k[31:0]$828
+   137/180: $5\corrected_data[31:0]
+   138/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$352[31:0]$830
+   139/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$351[31:0]$829
+   140/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$353[31:0]$831
+   141/180: $4$unnamed_block$335.k[31:0]$813
+   142/180: $4\corrected_data[31:0]
+   143/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$349[31:0]$815
+   144/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$348[31:0]$814
+   145/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$350[31:0]$816
+   146/180: $3$unnamed_block$335.k[31:0]$798
+   147/180: $3\corrected_data[31:0]
+   148/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$346[31:0]$800
+   149/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$345[31:0]$799
+   150/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$347[31:0]$801
+   151/180: $2$unnamed_block$335.k[31:0]$783
+   152/180: $2\corrected_data[31:0]
+   153/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$343[31:0]$785
+   154/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$342[31:0]$784
+   155/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$344[31:0]$786
+   156/180: $1$unnamed_block$335.k[31:0]$768
+   157/180: $1\corrected_data[31:0]
+   158/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:50$340[31:0]$770
+   159/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:50$339[31:0]$769
+   160/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:50$341[31:0]$771
+   161/180: $2\double_error[0:0]
+   162/180: $3$unnamed_block$335.fixed[38:0]$750
+   163/180: $3$bitselwrite$data$rtl/ecc_decoder.sv:37$337[38:0]$752
+   164/180: $3$bitselwrite$mask$rtl/ecc_decoder.sv:37$336[38:0]$751
+   165/180: $3$bitselwrite$sel$rtl/ecc_decoder.sv:37$338[5:0]$753
+   166/180: $3\single_error[0:0]
+   167/180: $3\uncorrectable[0:0]
+   168/180: $2\single_error[0:0]
+   169/180: $2$bitselwrite$sel$rtl/ecc_decoder.sv:37$338[5:0]$748
+   170/180: $2$bitselwrite$data$rtl/ecc_decoder.sv:37$337[38:0]$747
+   171/180: $2$bitselwrite$mask$rtl/ecc_decoder.sv:37$336[38:0]$746
+   172/180: $2\uncorrectable[0:0]
+   173/180: $2$unnamed_block$335.fixed[38:0]$745
+   174/180: $1$bitselwrite$sel$rtl/ecc_decoder.sv:37$338[5:0]$743
+   175/180: $1$bitselwrite$data$rtl/ecc_decoder.sv:37$337[38:0]$742
+   176/180: $1$bitselwrite$mask$rtl/ecc_decoder.sv:37$336[38:0]$741
+   177/180: $1\uncorrectable[0:0]
+   178/180: $1$unnamed_block$335.fixed[38:0]$740
+   179/180: $1\single_error[0:0]
+   180/180: $1\double_error[0:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\ecc_decoder.\double_error' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.\single_error' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.\corrected_data' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.fixed' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.$for_loop$330[1].$fordecl_block$331.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.$for_loop$330[0].$fordecl_block$331.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.b' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.k' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.ovr' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.syn' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.\uncorrectable' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.$for_loop$330[2].$fordecl_block$331.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.$for_loop$330[3].$fordecl_block$331.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.$for_loop$330[4].$fordecl_block$331.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$329.$for_loop$330[5].$fordecl_block$331.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:37$336' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:37$337' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:37$338' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$unnamed_block$335.$fordecl_block$333.p' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$339' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$340' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$341' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$342' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$343' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$344' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$345' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$346' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$347' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$348' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$349' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$350' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$351' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$352' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$353' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$354' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$355' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$356' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$357' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$358' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$359' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$360' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$361' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$362' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$363' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$364' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$365' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$366' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$367' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$368' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$369' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$370' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$371' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$372' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$373' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$374' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$375' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$376' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$377' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$378' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$379' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$380' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$381' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$382' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$383' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$384' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$385' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$386' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$387' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$388' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$389' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$390' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$391' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$392' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$393' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$394' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$395' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$396' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$397' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$398' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$399' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$400' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$401' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$402' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$403' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$404' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$405' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$406' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$407' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$408' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$409' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$410' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$411' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$412' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$413' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$414' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$415' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$416' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$417' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$418' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$419' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$420' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$421' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$422' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$423' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$424' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$425' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$426' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$427' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$428' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$429' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$430' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$431' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$mask$rtl/ecc_decoder.sv:50$432' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$data$rtl/ecc_decoder.sv:50$433' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+No latch inferred for signal `\ecc_decoder.$bitselwrite$sel$rtl/ecc_decoder.sv:50$434' from process `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 36 empty switches in `\ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+Removing empty process `ecc_decoder.$proc$rtl/ecc_decoder.sv:0$435'.
+Cleaned up 36 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+<suppressed ~330 debug messages>
+
+4.3. Executing FLATTEN pass (flatten design).
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+<suppressed ~2 debug messages>
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 18 unused cells and 866 unused wires.
+<suppressed ~22 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module ecc_decoder...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ecc_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$1412.
+    dead port 1/2 on $mux $procmux$1419.
+    dead port 2/2 on $mux $procmux$1421.
+    dead port 1/2 on $mux $procmux$1455.
+    dead port 2/2 on $mux $procmux$1457.
+    dead port 1/2 on $mux $procmux$1464.
+    dead port 2/2 on $mux $procmux$1466.
+    dead port 2/2 on $mux $procmux$1472.
+    dead port 2/2 on $mux $procmux$1496.
+    dead port 2/2 on $mux $procmux$1502.
+Removed 10 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ecc_decoder.
+Performed a total of 0 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 0 unused cells and 11 unused wires.
+<suppressed ~1 debug messages>
+
+4.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ecc_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ecc_decoder.
+Performed a total of 0 changes.
+
+4.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.7.16. Finished OPT passes. (There is nothing left to do.)
+
+4.8. Executing FSM pass (extract and optimize FSM).
+
+4.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+4.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+4.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+4.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+4.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+4.9. Executing OPT pass (performing simple optimizations).
+
+4.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ecc_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ecc_decoder.
+Performed a total of 0 changes.
+
+4.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.9.9. Finished OPT passes. (There is nothing left to do.)
+
+4.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 25 bits (of 32) from port A of cell ecc_decoder.$neg$rtl/ecc_decoder.sv:0$755 ($neg).
+Converting cell ecc_decoder.$neg$rtl/ecc_decoder.sv:0$755 ($neg) from signed to unsigned.
+Removed top 1 bits (of 7) from port A of cell ecc_decoder.$neg$rtl/ecc_decoder.sv:0$755 ($neg).
+Removed top 38 bits (of 39) from port A of cell ecc_decoder.$not$rtl/ecc_decoder.sv:37$759 ($not).
+Removed top 38 bits (of 39) from port Y of cell ecc_decoder.$not$rtl/ecc_decoder.sv:37$759 ($not).
+Removed top 31 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$796 ($or).
+Removed top 30 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$796 ($or).
+Removed top 30 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$796 ($or).
+Removed top 30 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$811 ($or).
+Removed top 29 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$811 ($or).
+Removed top 29 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$811 ($or).
+Removed top 29 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$826 ($or).
+Removed top 28 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$826 ($or).
+Removed top 28 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$826 ($or).
+Removed top 28 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$841 ($or).
+Removed top 27 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$841 ($or).
+Removed top 27 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$841 ($or).
+Removed top 27 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$856 ($or).
+Removed top 26 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$856 ($or).
+Removed top 26 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$856 ($or).
+Removed top 26 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$871 ($or).
+Removed top 25 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$871 ($or).
+Removed top 25 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$871 ($or).
+Removed top 25 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$886 ($or).
+Removed top 24 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$886 ($or).
+Removed top 24 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$886 ($or).
+Removed top 24 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$901 ($or).
+Removed top 23 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$901 ($or).
+Removed top 23 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$901 ($or).
+Removed top 23 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$916 ($or).
+Removed top 22 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$916 ($or).
+Removed top 22 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$916 ($or).
+Removed top 22 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$931 ($or).
+Removed top 21 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$931 ($or).
+Removed top 21 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$931 ($or).
+Removed top 21 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$946 ($or).
+Removed top 20 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$946 ($or).
+Removed top 20 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$946 ($or).
+Removed top 20 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$961 ($or).
+Removed top 19 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$961 ($or).
+Removed top 19 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$961 ($or).
+Removed top 19 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$976 ($or).
+Removed top 18 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$976 ($or).
+Removed top 18 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$976 ($or).
+Removed top 18 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$991 ($or).
+Removed top 17 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$991 ($or).
+Removed top 17 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$991 ($or).
+Removed top 17 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1006 ($or).
+Removed top 16 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1006 ($or).
+Removed top 16 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1006 ($or).
+Removed top 16 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1021 ($or).
+Removed top 15 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1021 ($or).
+Removed top 15 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1021 ($or).
+Removed top 15 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1036 ($or).
+Removed top 14 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1036 ($or).
+Removed top 14 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1036 ($or).
+Removed top 14 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1051 ($or).
+Removed top 13 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1051 ($or).
+Removed top 13 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1051 ($or).
+Removed top 13 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1066 ($or).
+Removed top 12 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1066 ($or).
+Removed top 12 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1066 ($or).
+Removed top 12 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1081 ($or).
+Removed top 11 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1081 ($or).
+Removed top 11 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1081 ($or).
+Removed top 11 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1096 ($or).
+Removed top 10 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1096 ($or).
+Removed top 10 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1096 ($or).
+Removed top 10 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1111 ($or).
+Removed top 9 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1111 ($or).
+Removed top 9 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1111 ($or).
+Removed top 9 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1126 ($or).
+Removed top 8 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1126 ($or).
+Removed top 8 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1126 ($or).
+Removed top 8 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1141 ($or).
+Removed top 7 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1141 ($or).
+Removed top 7 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1141 ($or).
+Removed top 7 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1156 ($or).
+Removed top 6 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1156 ($or).
+Removed top 6 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1156 ($or).
+Removed top 6 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1171 ($or).
+Removed top 5 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1171 ($or).
+Removed top 5 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1171 ($or).
+Removed top 5 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1186 ($or).
+Removed top 4 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1186 ($or).
+Removed top 4 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1186 ($or).
+Removed top 4 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1201 ($or).
+Removed top 3 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1201 ($or).
+Removed top 3 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1201 ($or).
+Removed top 3 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1216 ($or).
+Removed top 2 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1216 ($or).
+Removed top 2 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1216 ($or).
+Removed top 2 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1231 ($or).
+Removed top 1 bits (of 32) from port B of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1231 ($or).
+Removed top 1 bits (of 32) from port Y of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1231 ($or).
+Removed top 1 bits (of 32) from port A of cell ecc_decoder.$or$rtl/ecc_decoder.sv:0$1246 ($or).
+Removed top 31 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$340[31:0]$452.
+Removed top 29 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$346[31:0]$458.
+Removed top 28 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$349[31:0]$461.
+Removed top 27 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$352[31:0]$464.
+Removed top 26 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$355[31:0]$467.
+Removed top 25 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$358[31:0]$470.
+Removed top 24 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$361[31:0]$473.
+Removed top 23 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$364[31:0]$476.
+Removed top 22 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$367[31:0]$479.
+Removed top 21 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$370[31:0]$482.
+Removed top 20 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$373[31:0]$485.
+Removed top 19 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$376[31:0]$488.
+Removed top 18 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$379[31:0]$491.
+Removed top 17 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$382[31:0]$494.
+Removed top 16 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$385[31:0]$497.
+Removed top 15 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$388[31:0]$500.
+Removed top 14 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$391[31:0]$503.
+Removed top 13 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$394[31:0]$506.
+Removed top 12 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$397[31:0]$509.
+Removed top 11 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$400[31:0]$512.
+Removed top 10 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$403[31:0]$515.
+Removed top 9 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$406[31:0]$518.
+Removed top 7 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$412[31:0]$524.
+Removed top 6 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$415[31:0]$527.
+Removed top 5 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$418[31:0]$530.
+Removed top 4 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$421[31:0]$533.
+Removed top 3 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$424[31:0]$536.
+Removed top 2 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$427[31:0]$539.
+Removed top 1 bits (of 32) from wire ecc_decoder.$0$bitselwrite$data$rtl/ecc_decoder.sv:50$430[31:0]$542.
+Removed top 22 bits (of 32) from wire ecc_decoder.$10\corrected_data[31:0].
+Removed top 21 bits (of 32) from wire ecc_decoder.$11\corrected_data[31:0].
+Removed top 20 bits (of 32) from wire ecc_decoder.$12\corrected_data[31:0].
+Removed top 19 bits (of 32) from wire ecc_decoder.$13\corrected_data[31:0].
+Removed top 18 bits (of 32) from wire ecc_decoder.$14\corrected_data[31:0].
+Removed top 17 bits (of 32) from wire ecc_decoder.$15\corrected_data[31:0].
+Removed top 16 bits (of 32) from wire ecc_decoder.$16\corrected_data[31:0].
+Removed top 15 bits (of 32) from wire ecc_decoder.$17\corrected_data[31:0].
+Removed top 14 bits (of 32) from wire ecc_decoder.$18\corrected_data[31:0].
+Removed top 13 bits (of 32) from wire ecc_decoder.$19\corrected_data[31:0].
+Removed top 12 bits (of 32) from wire ecc_decoder.$20\corrected_data[31:0].
+Removed top 11 bits (of 32) from wire ecc_decoder.$21\corrected_data[31:0].
+Removed top 10 bits (of 32) from wire ecc_decoder.$22\corrected_data[31:0].
+Removed top 9 bits (of 32) from wire ecc_decoder.$23\corrected_data[31:0].
+Removed top 8 bits (of 32) from wire ecc_decoder.$24\corrected_data[31:0].
+Removed top 7 bits (of 32) from wire ecc_decoder.$25\corrected_data[31:0].
+Removed top 6 bits (of 32) from wire ecc_decoder.$26\corrected_data[31:0].
+Removed top 5 bits (of 32) from wire ecc_decoder.$27\corrected_data[31:0].
+Removed top 4 bits (of 32) from wire ecc_decoder.$28\corrected_data[31:0].
+Removed top 3 bits (of 32) from wire ecc_decoder.$29\corrected_data[31:0].
+Removed top 30 bits (of 32) from wire ecc_decoder.$2\corrected_data[31:0].
+Removed top 2 bits (of 32) from wire ecc_decoder.$30\corrected_data[31:0].
+Removed top 1 bits (of 32) from wire ecc_decoder.$31\corrected_data[31:0].
+Removed top 38 bits (of 39) from wire ecc_decoder.$and$rtl/ecc_decoder.sv:0$760_Y.
+Removed top 38 bits (of 39) from wire ecc_decoder.$extend$rtl/ecc_decoder.sv:37$758_Y.
+Removed top 29 bits (of 39) from wire ecc_decoder.$or$rtl/ecc_decoder.sv:0$766_Y.
+
+4.11. Executing PEEPOPT pass (run peephole optimizers).
+
+4.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 0 unused cells and 56 unused wires.
+<suppressed ~1 debug messages>
+
+4.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module ecc_decoder:
+  creating $macc model for $neg$rtl/ecc_decoder.sv:0$755 ($neg).
+  creating $alu model for $macc $neg$rtl/ecc_decoder.sv:0$755.
+  creating $alu model for $le$rtl/ecc_decoder.sv:35$749 ($le): new $alu
+  creating $alu cell for $le$rtl/ecc_decoder.sv:35$749: $auto$alumacc.cc:485:replace_alu$1581
+  creating $alu cell for $neg$rtl/ecc_decoder.sv:0$755: $auto$alumacc.cc:485:replace_alu$1594
+  created 2 $alu and 0 $macc cells.
+
+4.14. Executing SHARE pass (SAT-based resource sharing).
+
+4.15. Executing OPT pass (performing simple optimizations).
+
+4.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ecc_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ecc_decoder.
+Performed a total of 0 changes.
+
+4.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+4.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ecc_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ecc_decoder.
+Performed a total of 0 changes.
+
+4.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.15.16. Finished OPT passes. (There is nothing left to do.)
+
+4.16. Executing MEMORY pass.
+
+4.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+4.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+4.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+4.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+4.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+4.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+4.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+4.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.18. Executing OPT pass (performing simple optimizations).
+
+4.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+<suppressed ~6 debug messages>
+
+4.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+4.18.5. Finished fast OPT passes.
+
+4.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+4.20. Executing OPT pass (performing simple optimizations).
+
+4.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ecc_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ecc_decoder.
+Performed a total of 0 changes.
+
+4.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.20.6. Executing OPT_SHARE pass.
+
+4.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+4.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+
+4.20.10. Finished OPT passes. (There is nothing left to do.)
+
+4.21. Executing TECHMAP pass (map to technology primitives).
+
+4.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+4.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $reduce_xor.
+Using extmapper simplemap for cells of type $logic_not.
+Using template $paramod$f37f2c8dfedbb1aba8957c1accfcc6910f4365b7\_90_alu for cells of type $alu.
+Using template $paramod$constmap:31f61dac1f25047671d1ce78cf956a0b80fb4176$paramod$4aa6fcd1bdda1ca39e411d4ba2e28f7438aa75be\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$constmap:7d7675dd70ffd5390eb2ce08ee48728ae1b045af$paramod$adb0763659c22d68bbe8dd3dc7c78f4359dbaa5d\_90_shift_shiftx for cells of type $shiftx.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:4a9710fba477ae791a9347a86899ff15007208e4$paramod$4aa6fcd1bdda1ca39e411d4ba2e28f7438aa75be\_90_shift_shiftx'.
+
+4.21.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:4a9710fba477ae791a9347a86899ff15007208e4$paramod$4aa6fcd1bdda1ca39e411d4ba2e28f7438aa75be\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$2026.
+    dead port 2/2 on $mux $procmux$2020.
+    dead port 2/2 on $mux $procmux$2014.
+    dead port 2/2 on $mux $procmux$2008.
+    dead port 2/2 on $mux $procmux$2002.
+    dead port 2/2 on $mux $procmux$1996.
+    dead port 2/2 on $mux $procmux$1990.
+Removed 7 multiplexer ports.
+<suppressed ~625 debug messages>
+
+4.21.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:4a9710fba477ae791a9347a86899ff15007208e4$paramod$4aa6fcd1bdda1ca39e411d4ba2e28f7438aa75be\_90_shift_shiftx.
+<suppressed ~26 debug messages>
+Removed 0 unused cells and 12 unused wires.
+Using template $paramod$constmap:4a9710fba477ae791a9347a86899ff15007208e4$paramod$4aa6fcd1bdda1ca39e411d4ba2e28f7438aa75be\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~578 debug messages>
+
+4.22. Executing OPT pass (performing simple optimizations).
+
+4.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+<suppressed ~3622 debug messages>
+
+4.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+<suppressed ~348 debug messages>
+Removed a total of 116 cells.
+
+4.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 523 unused cells and 409 unused wires.
+<suppressed ~524 debug messages>
+
+4.22.5. Finished fast OPT passes.
+
+4.23. Executing ABC pass (technology mapping using ABC).
+
+4.23.1. Extracting gate netlist of module `\ecc_decoder' to `<abc-temp-dir>/input.blif'..
+Extracted 674 gates and 715 wires to a netlist network with 39 inputs and 35 outputs.
+
+4.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+4.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               XOR cells:      108
+ABC RESULTS:              XNOR cells:       21
+ABC RESULTS:              NAND cells:        4
+ABC RESULTS:               NOT cells:       15
+ABC RESULTS:             ORNOT cells:       26
+ABC RESULTS:                OR cells:      190
+ABC RESULTS:               MUX cells:      134
+ABC RESULTS:               AND cells:        1
+ABC RESULTS:               NOR cells:        1
+ABC RESULTS:            ANDNOT cells:      112
+ABC RESULTS:        internal signals:      641
+ABC RESULTS:           input signals:       39
+ABC RESULTS:          output signals:       35
+Removing temp directory.
+
+4.24. Executing OPT pass (performing simple optimizations).
+
+4.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ecc_decoder.
+<suppressed ~32 debug messages>
+
+4.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ecc_decoder'.
+Removed a total of 0 cells.
+
+4.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+Removed 0 unused cells and 242 unused wires.
+<suppressed ~1 debug messages>
+
+4.24.5. Finished fast OPT passes.
+
+4.25. Executing HIERARCHY pass (managing design hierarchy).
+
+4.25.1. Analyzing design hierarchy..
+Top module:  \ecc_decoder
+
+4.25.2. Analyzing design hierarchy..
+Top module:  \ecc_decoder
+Removed 0 unused modules.
+
+4.26. Printing statistics.
+
+=== ecc_decoder ===
+
+   Number of wires:                582
+   Number of wire bits:            651
+   Number of public wires:           5
+   Number of public wire bits:      74
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                612
+     $_ANDNOT_                     112
+     $_AND_                          1
+     $_MUX_                        134
+     $_NAND_                         4
+     $_NOR_                          1
+     $_NOT_                         15
+     $_ORNOT_                       26
+     $_OR_                         190
+     $_XNOR_                        21
+     $_XOR_                        108
+
+4.27. Executing CHECK pass (checking for obvious problems).
+Checking module ecc_decoder...
+Found and reported 0 problems.
+
+5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ecc_decoder..
+
+6. Executing CHECK pass (checking for obvious problems).
+Checking module ecc_decoder...
+Found and reported 0 problems.
+
+7. Printing statistics.
+
+=== ecc_decoder ===
+
+   Number of wires:                582
+   Number of wire bits:            651
+   Number of public wires:           5
+   Number of public wire bits:      74
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                612
+     $_ANDNOT_                     112
+     $_AND_                          1
+     $_MUX_                        134
+     $_NAND_                         4
+     $_NOR_                          1
+     $_NOT_                         15
+     $_ORNOT_                       26
+     $_OR_                         190
+     $_XNOR_                        21
+     $_XOR_                        108
+
+8. Executing LTP pass (find longest path).
+
+Longest topological path in ecc_decoder (length=36):
+    0: \rx [3]
+    1: $abc$6899$new_n76_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6901)
+    2: $abc$6899$new_n77_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6902)
+    3: $abc$6899$new_n78_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6903)
+    4: $abc$6899$new_n79_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6904)
+    5: $abc$6899$new_n80_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6905)
+    6: $abc$6899$new_n81_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6906)
+    7: $abc$6899$new_n82_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6907)
+    8: $abc$6899$new_n83_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6908)
+    9: $abc$6899$new_n84_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6909)
+   10: $abc$6899$new_n85_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6910)
+   11: $abc$6899$new_n86_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6911)
+   12: $abc$6899$new_n87_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6912)
+   13: $abc$6899$new_n88_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6913)
+   14: $abc$6899$new_n89_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6914)
+   15: $abc$6899$new_n90_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6915)
+   16: $abc$6899$new_n91_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6916)
+   17: $abc$6899$new_n92_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$6917)
+   18: $abc$6899$new_n207_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7032)
+   19: $abc$6899$new_n278_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7103)
+   20: $abc$6899$new_n279_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7104)
+   21: $abc$6899$new_n280_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7105)
+   22: $abc$6899$new_n281_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7106)
+   23: $abc$6899$new_n282_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7107)
+   24: $abc$6899$new_n283_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7108)
+   25: $abc$6899$new_n284_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7109)
+   26: $abc$6899$new_n322_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7147)
+   27: $abc$6899$new_n399_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7224)
+   28: $abc$6899$new_n537_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7362)
+   29: $abc$6899$new_n538_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7363)
+   30: $abc$6899$new_n539_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7364)
+   31: $abc$6899$new_n540_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7365)
+   32: $abc$6899$new_n541_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7366)
+   33: $abc$6899$new_n542_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7367)
+   34: $abc$6899$new_n543_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7368)
+   35: $abc$6899$new_n544_ (via $abc$6899$auto$blifparse.cc:386:parse_blif$7369)
+   36: \corrected_data [18] (via $abc$6899$auto$blifparse.cc:386:parse_blif$7370)
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\ecc_decoder'.
+
+End of script. Logfile hash: b3378cfe39, CPU: user 1.34s system 0.09s, MEM: 28.23 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 26% 24x opt_expr (0 sec), 13% 4x read_verilog (0 sec), ...

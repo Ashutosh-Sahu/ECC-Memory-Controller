@@ -1,0 +1,27 @@
+8. Executing LTP pass (find longest path).
+
+Longest topological path in ecc_encoder (length=23):
+    0: \data [2]
+    1: $abc$1452$new_n75_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1488)
+    2: $abc$1452$new_n76_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1489)
+    3: $abc$1452$new_n77_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1490)
+    4: $abc$1452$new_n78_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1491)
+    5: $abc$1452$new_n79_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1492)
+    6: $abc$1452$new_n80_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1493)
+    7: $abc$1452$new_n81_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1494)
+    8: $abc$1452$new_n82_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1495)
+    9: $abc$1452$new_n83_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1496)
+   10: $abc$1452$new_n84_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1497)
+   11: $abc$1452$new_n85_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1498)
+   12: $abc$1452$new_n86_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1499)
+   13: $abc$1452$new_n87_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1500)
+   14: $abc$1452$new_n88_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1501)
+   15: $abc$1452$new_n89_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1502)
+   16: $abc$1452$new_n90_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1503)
+   17: $abc$1452$new_n91_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1504)
+   18: $abc$1452$new_n130_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1543)
+   19: $abc$1452$new_n131_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1544)
+   20: $abc$1452$new_n134_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1547)
+   21: $abc$1452$new_n141_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1554)
+   22: $abc$1452$new_n156_ (via $abc$1452$auto$blifparse.cc:386:parse_blif$1569)
+   23: \codeword [0] (via $abc$1452$auto$blifparse.cc:386:parse_blif$1574)
