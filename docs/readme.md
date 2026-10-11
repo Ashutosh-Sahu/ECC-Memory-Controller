@@ -2,10 +2,7 @@
 
 A synthesizable (39,32) SEC-DED ECC memory controller written in SystemVerilog,
 with a self-checking testbench, fault injection, SVA assertions and a basic
-Yosys synthesis analysis. Built as an educational project.
-
-> **Scope:** educational design. Not production IP. No STA, power or
-> physical-design analysis was performed.
+Yosys synthesis analysis.
 
 ## Features
 
